@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Clone</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="game-container"></div>
+    
+    <!-- Phaser 3.x from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    
+    <!-- Game Constants -->
+    <script src="js/utils/constants.js"></script>
+    
+    <!-- Audio Data (base64 encoded - optional, works without server) -->
+    <script src="js/utils/audioData.js"></script>
+    
+    <!-- Sound Generator (fallback if audio files missing) -->
+    <script src="js/utils/SoundGenerator.js"></script>
+    
+    <!-- Managers -->
+    <script src="js/managers/StorageManager.js"></script>
+    <script src="js/managers/AudioManager.js"></script>
+    
+    <!-- Game Logic -->
+    <script src="js/game/Tetromino.js"></script>
+    <script src="js/game/TetrisBoard.js"></script>
+    <script src="js/game/ScoreManager.js"></script>
+    <script src="js/game/GameManager.js"></script>
+    
+    <!-- Scenes -->
+    <script src="js/scenes/MainMenuScene.js"></script>
+    <script src="js/scenes/GameScene.js"></script>
+    <script src="js/scenes/PauseScene.js"></script>
+    <script src="js/scenes/GameOverScene.js"></script>
+    <script src="js/scenes/HighScoresScene.js"></script>
+    
+    <!-- Main Game Configuration -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+
