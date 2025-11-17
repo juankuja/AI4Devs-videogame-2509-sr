@@ -102,8 +102,11 @@ class GameOverScene extends Phaser.Scene {
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         this.backspaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.BACKSPACE);
         
-        // Prevent default browser behavior
-        this.input.keyboard.preventDefault = true;
+        // Prevent default browser behavior for backspace/enter
+        this.input.keyboard.addCapture([
+            Phaser.Input.Keyboard.KeyCodes.BACKSPACE,
+            Phaser.Input.Keyboard.KeyCodes.ENTER
+        ]);
     }
 
     handleKeyInput(event) {

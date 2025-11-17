@@ -32,6 +32,11 @@ const config = {
     render: {
         antialias: true,
         pixelArt: false
+    },
+    input: {
+        keyboard: {
+            preventDefault: true
+        }
     }
 };
 

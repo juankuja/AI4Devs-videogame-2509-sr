@@ -171,7 +171,7 @@ class AudioManager {
      */
     stopAll() {
         Object.values(this.sounds).forEach(sound => {
-            if (sound && sound.isPlaying) {
+            if (sound && typeof sound.stop === 'function') {
                 sound.stop();
             }
         });

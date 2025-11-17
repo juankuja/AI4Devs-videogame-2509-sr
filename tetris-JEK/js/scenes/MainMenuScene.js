@@ -42,9 +42,6 @@ class MainMenuScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
-        // Prevent default browser behavior
-        this.input.keyboard.preventDefault = true;
     }
 
     update() {

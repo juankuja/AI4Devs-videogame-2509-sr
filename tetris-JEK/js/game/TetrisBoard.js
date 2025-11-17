@@ -21,7 +21,7 @@ class TetrisBoard {
      * Get the value at a specific cell
      * @param {number} row - Row index
      * @param {number} col - Column index
-     * @returns {number} Cell value (0 = empty, 1-7 = piece type)
+     * @returns {number} Cell value (-1 = out of bounds, 0 = empty, 1-7 = piece type)
      */
     getCell(row, col) {
         if (row < 0 || row >= this.height || col < 0 || col >= this.width) {
@@ -112,6 +112,9 @@ class TetrisBoard {
      * @returns {boolean} True if locking was successful
      */
     lockPiece(piece, x, y, rotation = null) {
+        // Normalize rotation to use piece's current rotation if not provided
+        rotation = rotation !== null ? rotation : piece.rotation;
+        
         if (!this.isValidPosition(piece, x, y, rotation)) {
             return false;
         }
@@ -217,20 +220,32 @@ class TetrisBoard {
      * @returns {number} Number of lines cleared
      */
     clearLines() {
-        const fullLines = this.getFullLines();
+        let removedCount = 0;
+        let row = this.height - 1;
         
-        if (fullLines.length === 0) {
-            return 0;
+        // Scan from bottom to top
+        while (row >= 0) {
+            // Check if current row is full
+            let isFull = true;
+            for (let col = 0; col < this.width; col++) {
+                if (this.grid[row][col] === 0) {
+                    isFull = false;
+                    break;
+                }
+            }
+            
+            if (isFull) {
+                // Remove the line and recheck the same index
+                // (don't decrement row, as a new row fell into this position)
+                this.removeLine(row);
+                removedCount++;
+            } else {
+                // Move to next row up
+                row--;
+            }
         }
         
-        // Remove lines from bottom to top to maintain correct indices
-        fullLines.sort((a, b) => b - a);
-        
-        for (const rowIndex of fullLines) {
-            this.removeLine(rowIndex);
-        }
-        
-        return fullLines.length;
+        return removedCount;
     }
 
     /**
